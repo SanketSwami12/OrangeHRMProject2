@@ -34,21 +34,52 @@ public class ActionDriver {
 
 	// Lets add different reusable methods
 	// Method to click an element -> Click Method
+//	public void click(By by) {
+//		String elementDescription = getElementDescription(by);
+//		try {
+//			applyBorder(by,"green");
+//			waitForElemenetToBeClickable(by);
+//			driver.findElement(by).click();
+//			ExtentManager.logStep("Clicked an element: " +elementDescription);
+//			Logger.info("Clicked an element-->" +elementDescription);
+//		} catch (Exception e) {
+//			applyBorder(by,"red");
+//			Logger.error("Unable to click an element:" + e.getMessage());
+//			ExtentManager.logFailure(BaseClass.getDriver(), "Unable to click an element:", elementDescription+"Unable to click");
+//			Logger.error("Unable to click an element:");
+//		}
+//	}
 	public void click(By by) {
-		String elementDescription = getElementDescription(by);
-		try {
-			applyBorder(by,"green");
-			waitForElemenetToBeClickable(by);
-			driver.findElement(by).click();
-			ExtentManager.logStep("Clicked an element: " +elementDescription);
-			Logger.info("Clicked an element-->" +elementDescription);
-		} catch (Exception e) {
-			applyBorder(by,"red");
-			Logger.error("Unable to click an element:" + e.getMessage());
-			ExtentManager.logFailure(BaseClass.getDriver(), "Unable to click an element:", elementDescription+"Unable to click");
-			Logger.error("Unable to click an element:");
-		}
+
+	    String elementDescription = getElementDescription(by);
+
+	    try {
+	        waitForElemenetToBeClickable(by);
+	        applyBorder(by, "green");
+
+	        driver.findElement(by).click();
+
+	        ExtentManager.logStep("Clicked an element: " + elementDescription);
+	        Logger.info("Clicked an element --> " + elementDescription);
+
+	    } catch (Exception e) {
+
+	        applyBorder(by, "red");
+
+	        Logger.error("Unable to click an element: " + e.getMessage());
+
+	        ExtentManager.logFailure(
+	                BaseClass.getDriver(),
+	                "Unable to click an element:",
+	                elementDescription + " Unable to click"
+	        );
+
+	        // IMPORTANT:
+	        // Pass the failure back to TestNG
+	        throw e;
+	    }
 	}
+	
 
 	// Method to enter text into an input field -> Sendkeys method
 	public void enterText(By by, String value) {

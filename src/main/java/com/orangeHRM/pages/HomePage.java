@@ -82,7 +82,7 @@ public class HomePage {
 	//For TC05
 	private By EmployeesOnLeaveToday_Setting_Btn = By.xpath("//i[@class=\"oxd-icon bi-gear-fill orangehrm-leave-card-icon\"]");
 	private By EmployeesOnLeave_PopUp = By.xpath("//*[@role=\"document\"]");
-	private By EmplyoeesOnLeave_CheckBox = By.xpath("//*[@class=\"oxd-switch-wrapper\"]");
+	private By EmplyoeesOnLeave_CheckBox = By.xpath("//*[@class=\"oxd-switch-input oxd-switch-input--active --label-right\"]");
 	private By EmplyoeesOnLeave_Save_Btn = By.xpath("//*[text()=' Save ']");
 	//
 	private By UserIdBtn = By.xpath("//*[@class=\"oxd-userdropdown-tab\"]");
