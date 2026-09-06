@@ -2,6 +2,14 @@ pipeline {
 
     agent any
 
+    parameters {
+        choice(
+            name: 'BROWSER',
+            choices: ['chrome', 'firefox', 'edge'],
+            description: 'Select the browser for test execution'
+        )
+    }
+
     stages {
 
         stage('Checkout') {
@@ -28,7 +36,7 @@ pipeline {
 
             steps {
 
-                bat 'mvn test'
+                bat "mvn test -Dbrowser=${params.BROWSER}"
 
             }
 
@@ -41,12 +49,19 @@ pipeline {
         always {
 
             publishHTML(target: [
+
                 allowMissing: true,
+
                 alwaysLinkToLastBuild: true,
+
                 keepAll: true,
+
                 reportDir: 'src/test/resources/ExtentReport',
+
                 reportFiles: 'ExtentReport.html',
+
                 reportName: 'Extent Report'
+
             ])
 
             echo 'Pipeline execution completed.'

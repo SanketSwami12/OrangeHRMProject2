@@ -73,7 +73,8 @@ public class BaseClass {
 	// Initialize the WebDriver based on browser defined in config.properties file
 	private void launchBrowser() {
 
-		String browser = prop.getProperty("browser");
+	//	String browser = prop.getProperty("browser");
+		String browser = System.getProperty("browser", prop.getProperty("browser")); ////“First check whether Maven/Jenkins supplied a browser value. If it didn't, use the browser value from config.properties.”
 
 		if (browser.equalsIgnoreCase("chrome")) {
 			// driver = new ChromeDriver();
